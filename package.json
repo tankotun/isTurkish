@@ -1,0 +1,15 @@
+{
+  "name": "isturkish",
+  "version": "1.0.0",
+  "description": "Kimlik bilgilerini, T.C. Nüfus ve Vatandaşlık İşleri Genel Müdürlüğünden doğrular.",
+  "main": "src/isTurkish.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Taner Tunçer <tankotun@gmail.com> (https://twitter.com/tankotun)",
+  "keywords": ["turkish", "citizen", "türk", "vatandaşlık", "nüfus", "kimlik"],
+  "license": "MIT",
+  "dependencies": {
+    "soap": "^1.0.0"
+  }
+}
