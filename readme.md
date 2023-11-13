@@ -1,5 +1,5 @@
 # isTurkish
-Kimlik bilgilerini, T.C. Nüfus ve Vatandaşlık İşleri Genel Müdürlüğünden doğrular.
+İsim, kimlik numarası ve doğum yılı bilgileriyle bir kişinin Türkiye Cumhuriyeti vatandaşı olup olmadığını doğrular. Sorgular doğrudan T.C. Nüfus ve Vatandaşlık İşleri Genel Müdürlüğünün halka açık servisinden gerçekleştirilir.
 
 ### Bilgi
 - Doğum Yılı: `birthdate` ile tarih **veya** `birthyear` ile yıl değeri gönderilir.
