@@ -5,6 +5,11 @@
 - Doğum Yılı: `birthdate` ile tarih **veya** `birthyear` ile yıl değeri gönderilir.
 - İsim: `name` ile tam isim **veya** `firstname` ve `lastname` ile isim değerleri gönderilir.
 
+### Kurulum
+```
+npm i isturkish
+```
+
 ### Örnek
 ```js
 // Çağır
