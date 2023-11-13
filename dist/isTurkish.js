@@ -1,4 +1,6 @@
-const soap = require("soap")
+'use strict';
+
+const soap = require("soap");
 
 /**
  * 
@@ -37,15 +39,15 @@ module.exports = async function isTurkish ({ firstname, lastname, name, identity
 
      // Name
      if(name) {
-       name = name?.split(' ').filter(f => f !== "")
+       name = name?.split(' ').filter(f => f !== "");
        if(name.length <= 1) return reject({ code: "name", message: "Name is incorrect!" })
      }
 
      // Values
-     firstname = String(firstname || name.slice(0, name.length - 1).join(' ')).trim().toLocaleUpperCase("tr-TR")
-     lastname = String(lastname || name.slice(-1)).trim().toLocaleUpperCase("tr-TR")
-     birthyear = birthyear || (new Date(birthdate)).getFullYear()
-     identity = identity
+     firstname = String(firstname || name.slice(0, name.length - 1).join(' ')).trim().toLocaleUpperCase("tr-TR");
+     lastname = String(lastname || name.slice(-1)).trim().toLocaleUpperCase("tr-TR");
+     birthyear = birthyear || (new Date(birthdate)).getFullYear();
+     identity = identity;
 
      // Request
      soap.createClient('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL', {}, async (_, client) => {
@@ -55,17 +57,17 @@ module.exports = async function isTurkish ({ firstname, lastname, name, identity
          DogumYili: birthyear,
          TCKimlikNo: identity,
        }, (__, result) => {
-        let person = { firstname, lastname, birthyear, identity }
+        let person = { firstname, lastname, birthyear, identity };
         if(result.TCKimlikNoDogrulaResult) {
-          resolve({ code: "turkish", turkish: true, person: person, message: "Person is Turkish." })
+          resolve({ code: "turkish", turkish: true, person: person, message: "Person is Turkish." });
         } else {
-          resolve({ code: "notTurkish", turkish: false, person: person, message: "Person is not Turkish!" })
+          resolve({ code: "notTurkish", turkish: false, person: person, message: "Person is not Turkish!" });
         }
-       })
-     })
+       });
+     });
 
    } catch (error) {
-     reject({ code: "request", message: "Request failed!" })
+     reject({ code: "request", message: "Request failed!" });
    }
  })
-}
+};

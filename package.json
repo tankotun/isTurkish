@@ -2,7 +2,7 @@
   "name": "isturkish",
   "version": "1.0.0",
   "description": "Kimlik bilgilerini, T.C. Nüfus ve Vatandaşlık İşleri Genel Müdürlüğünden doğrular.",
-  "main": "src/isTurkish.js",
+  "main": "dist/isTurkish.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
