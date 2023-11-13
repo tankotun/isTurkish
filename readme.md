@@ -58,7 +58,7 @@ await isTurkish({
 await isTurkish({
   firstname: "Falih Rıfkı",
   lastname: "Atay",
-  birthyear: "1975-10-05",
+  birthdate: "1975-10-05",
   identity: "00000000000",
 })
 ```
