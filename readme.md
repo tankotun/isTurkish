@@ -1,16 +1,16 @@
 # isTurkish
 Kimlik bilgilerini, T.C. Nüfus ve Vatandaşlık İşleri Genel Müdürlüğünden doğrular.
 
-*Uyumluluk: Node.js CommonJS*
-
 ### Bilgi
 - Doğum Yılı: `birthdate` ile tarih **veya** `birthyear` ile yıl değeri gönderilir.
 - İsim: `name` ile tam isim **veya** `firstname` ve `lastname` ile isim değerleri gönderilir.
 
 ### Örnek
 ```js
+// Çağır
 const isTurkish = require("isturkish")
 
+// Sorgula
 await isTurkish({
   name: "Zeki Müren",
   birthdate: "1931-12-06",
