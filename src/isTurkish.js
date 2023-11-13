@@ -2,7 +2,7 @@ const soap = require("soap")
 
 /**
  * 
- * isturkish
+ * isTurkish
  * Kimlik bilgilerini, T.C. Nüfus ve Vatandaşlık İşleri Genel Müdürlüğünden doğrular.
  * 
  * @author Taner Tunçer
