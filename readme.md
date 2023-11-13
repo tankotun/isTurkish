@@ -23,7 +23,7 @@ await isTurkish({
   console.log(result.person) // {firstname,lastname,birthyear,identity} (object)
   console.log(result.message) // "Person is Turkish." (string)
 
-  // Türk Vatandaşı değil ise:
+  // Türk Vatandaşı değilse:
   console.log(result.code) // "notTurkish" (string)
   console.log(result.turkish) // false (boolean)
   console.log(result.person) // {firstname,lastname,birthyear,identity} (object)
@@ -31,7 +31,7 @@ await isTurkish({
 
 }).catch(error => {
 
-  // Hata oluşur ise:
+  // Hata oluşursa:
   console.log(result.code) // string
   console.log(result.message) // string
 
