@@ -20,13 +20,13 @@ await isTurkish({
   // Türk Vatandaşı ise:
   console.log(result.code) // "turkish" (string)
   console.log(result.turkish) // true (boolean)
-  console.log(result.person) // {firstname,lastname,birthyear,identity} (object)
+  console.log(result.person) // {name,firstname,lastname,birthyear,identity} (object)
   console.log(result.message) // "Person is Turkish." (string)
 
   // Türk Vatandaşı değilse:
   console.log(result.code) // "notTurkish" (string)
   console.log(result.turkish) // false (boolean)
-  console.log(result.person) // {firstname,lastname,birthyear,identity} (object)
+  console.log(result.person) // {name,firstname,lastname,birthyear,identity} (object)
   console.log(result.message) // "Person is not Turkish." (string)
 
 }).catch(error => {
