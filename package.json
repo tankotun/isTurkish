@@ -7,7 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Taner Tunçer <tankotun@gmail.com> (https://twitter.com/tankotun)",
-  "keywords": ["turkish", "citizen", "türk", "vatandaşlık", "nüfus", "kimlik"],
+  "keywords": [
+    "turkish",
+    "citizen",
+    "türk",
+    "vatandaşlık",
+    "nüfus",
+    "kimlik"
+  ],
   "license": "MIT",
   "dependencies": {
     "soap": "^1.0.0"

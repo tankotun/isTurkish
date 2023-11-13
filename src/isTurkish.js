@@ -21,51 +21,55 @@ const soap = require("soap")
  * @returns {Promise<{
  *  code: string,
  *  turkish: boolean,
- *  person: { firstname: string, lastname: string, birthyear: string, identity: string },
+ *  person: { name: string, firstname: string, lastname: string, birthyear: string, identity: string },
  *  message: string
  * }>}
  * 
 */
 module.exports = async function isTurkish ({ firstname, lastname, name, identity, birthdate, birthyear }) {
- return new Promise (async (resolve, reject) => {
-   try {
+  return new Promise (async (resolve, reject) => {
+    try {
 
-     // Params
-     if(!(name || (firstname && lastname)) || !identity || !(birthdate || birthyear)) {
-       return reject({ code: "params", message: "Params are missing or incorrect!" })
-     }
+      // Params
+      if(!(name || (firstname && lastname)) || !identity || !(birthdate || birthyear)) {
+        return reject({ code: "params", message: "Params are missing or incorrect!" })
+      }
 
-     // Name
-     if(name) {
-       name = name?.split(' ').filter(f => f !== "")
-       if(name.length <= 1) return reject({ code: "name", message: "Name is incorrect!" })
-     }
+      // Name Split
+      name = (name || `${firstname || ""} ${lastname || ""}`)?.split(' ').filter(f => f !== "").map(x => {
+        return String(x).trim().toLocaleUpperCase("tr-TR")
+      })
 
-     // Values
-     firstname = String(firstname || name.slice(0, name.length - 1).join(' ')).trim().toLocaleUpperCase("tr-TR")
-     lastname = String(lastname || name.slice(-1)).trim().toLocaleUpperCase("tr-TR")
-     birthyear = birthyear || (new Date(birthdate)).getFullYear()
-     identity = identity
+      // Name Check
+      if(name.length <= 1) {
+        return reject({ code: "name", message: "Name is incorrect!" })
+      }
 
-     // Request
-     soap.createClient('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL', {}, async (_, client) => {
-       await client.TCKimlikNoDogrulaAsync({
-         Ad: firstname,
-         Soyad: lastname,
-         DogumYili: birthyear,
-         TCKimlikNo: identity,
-       }, (__, result) => {
-        let person = { firstname, lastname, birthyear, identity }
-        if(result.TCKimlikNoDogrulaResult) {
-          resolve({ code: "turkish", turkish: true, person: person, message: "Person is Turkish." })
-        } else {
-          resolve({ code: "notTurkish", turkish: false, person: person, message: "Person is not Turkish!" })
-        }
-       })
-     })
+      // Values
+      firstname = String(name.slice(0, name.length - 1).join(' '))
+      lastname = String(name.slice(-1))
+      birthyear = String(birthyear || (new Date(birthdate)).getFullYear())
+      identity = String(identity)
 
-   } catch (error) {
-     reject({ code: "request", message: "Request failed!" })
-   }
- })
+      // Request
+      soap.createClient('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL', {}, async (_, client) => {
+        await client.TCKimlikNoDogrulaAsync({
+          Ad: firstname,
+          Soyad: lastname,
+          DogumYili: birthyear,
+          TCKimlikNo: identity,
+        }, (__, result) => {
+          let person = { name: `${firstname} ${lastname}`, firstname, lastname, birthyear, identity }
+          if(result.TCKimlikNoDogrulaResult) {
+            resolve({ code: "turkish", turkish: true, person: person, message: "Person is Turkish." })
+          } else {
+            resolve({ code: "notTurkish", turkish: false, person: person, message: "Person is not Turkish!" })
+          }
+        })
+      })
+
+    } catch (error) {
+      reject({ code: "request", message: "Request failed!" })
+    }
+  })
 }
