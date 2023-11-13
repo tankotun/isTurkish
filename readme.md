@@ -40,6 +40,8 @@ await isTurkish({
 ```
 
 ### Parametre Örnekleri
+Bilgi alanında belirtilen durumların örnekleri.
+`name` ile doğrudan ad soyad gönderilebilir; ya da `firstname` ve `lastname` ile ad ve soyad farklı değerlerde de gönderilebilir. Doğum yılı bilgisi için `birthdate` içinde doğum tarihi; ya da `birthyear` olarak doğrudan yıl da gönderilebilir.
 ```js
 // Örnek 1
 await isTurkish({
